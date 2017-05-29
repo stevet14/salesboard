@@ -23,7 +23,7 @@ var MOCKED_SALES_DATA = [
     opportunityName: 'Point of Sale - UK, Germany, Spain',
     region: 'Europe'},
     {prospectName: 'GM Financial',
-    prospectLogo: 'https://media.glassdoor.com/sqll/488523/gm-financial-squarelogo-1445021144899.png',
+    prospectLogo: 'https://www.fourgonsrivesud.com/wp-content/uploads/2016/04/gm.png',
     opportunityName: 'End-to-end - Ireland',
     region: 'Europe'},
     {prospectName: 'CarMax',
@@ -104,11 +104,14 @@ export default class salesboard extends Component {
   renderOpportunity(opportunity) {
     return (
       <View style={styles.container}>
-        <Image
-          source={{uri: opportunity.prospectLogo}}
-          style={styles.prospectLogo}
-        />
-        <View style={styles.rightContainer}>
+        <View style={styles.topContainer}>
+          <Image
+            source={{uri: opportunity.prospectLogo}}
+            style={styles.prospectLogo}
+          />
+          <Text style={styles.opportunityStatus}>Initial Contact</Text>
+        </View>
+        <View style={styles.bottomContainer}>
           <Text style={styles.prospectName}>{opportunity.prospectName}</Text>
           <Text style={styles.opportunityName}>{opportunity.opportunityName}</Text>
           <Text style={styles.region}>{opportunity.region}</Text>
@@ -121,13 +124,19 @@ export default class salesboard extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    backgroundColor: '#FFFFFF',
   },
-  rightContainer: {
+  topContainer: {
     flex: 1,
+    flexDirection: 'row',
+  },
+  bottomContainer: {
+    margin: 10,
+    flex: 1,
+    flexDirection: 'row',
   },
   prospectLogo: {
     width: 100,
@@ -137,17 +146,18 @@ var styles = StyleSheet.create({
   prospectName: {
     fontSize: 20,
     marginBottom: 8,
-    textAlign: 'center',
+    textAlign: 'left',
+//    flexWrap: 'wrap',
   },
   opportunityName: {
-    textAlign: 'center',
+    textAlign: 'left',
   },
   region: {
-    textAlign: 'center',
+    textAlign: 'left',
   },
   listView: {
     paddingTop: 20,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
   },
 });
 
