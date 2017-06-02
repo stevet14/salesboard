@@ -9,10 +9,12 @@ import {
   AppRegistry,
   Image,
   ListView,
+  NavigatorIOS,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { setCustomText } from 'react-native-global-props';
 
 //var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
@@ -38,11 +40,48 @@ var MOCKED_SALES_DATA = [
     prospectLogo: 'https://centretechnologies.com/wp-content/uploads/2013/12/p-dell.png',
     opportunityName: 'Back-end - USA',
     region: 'North America'},
+    {prospectName: 'Nissan Financial Services',
+    prospectLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/200px-Nissan-logo.svg.png',
+    opportunityName: 'Back-end - USA',
+    region: 'North America'},
   ]
 }
 ];
 
+const customTextProps = {
+  style: {
+    fontFamily: 'System',
+    fontWeight: '600',
+    color: '#404040',
+  }
+}
+
+setCustomText(customTextProps);
+
 export default class salesboard extends Component {
+  _handleNavigationRequest() {
+    this.refs.nav.push({
+      component: Opportunity,
+      title: 'Opportunity',
+//      passProps: { myProp: 'genius' },
+    });
+  }
+  render() {
+    return (
+      <NavigatorIOS
+        initialRoute={{
+          component: Opportunities,
+          title: 'Opportunities',
+          rightButtonTitle: 'Add',
+          onRightButtonPress: () => this._handleNavigationRequest(),
+        }}
+        style={{flex: 1}}
+      />
+    );
+  }
+}
+
+class Opportunities extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,7 +109,7 @@ export default class salesboard extends Component {
   //     .then((response) => response.json())
   //     .then((responseData) => {
   //       this.setState({
-  //         dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+  //         dataSource: this.state.dataSource.cloneWithRows(responseData.opportunities),
   //         loaded: true,
   //       });
   //     })
@@ -111,11 +150,24 @@ export default class salesboard extends Component {
           />
           <Text style={styles.opportunityStatus}>Initial Contact</Text>
         </View>
+        <Text style={styles.prospectName}>{opportunity.prospectName}</Text>
         <View style={styles.bottomContainer}>
-          <Text style={styles.prospectName}>{opportunity.prospectName}</Text>
-          <Text style={styles.opportunityName}>{opportunity.opportunityName}</Text>
           <Text style={styles.region}>{opportunity.region}</Text>
+          <Text> : </Text>
+          <Text style={styles.opportunityName}>{opportunity.opportunityName}</Text>
         </View>
+      </View>
+    );
+  }
+}
+
+class Opportunity extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Add opportunity...
+        </Text>
       </View>
     );
   }
@@ -128,35 +180,55 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     backgroundColor: '#FFFFFF',
+    margin: 10,
+    marginBottom: 0,
+    shadowColor: '#888',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowRadius: 2,
+    shadowOpacity: 1.0,
   },
   topContainer: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: 5,
+    marginBottom: 0,
   },
   bottomContainer: {
-    margin: 10,
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'baseline',
+    margin: 5,
+    marginBottom: 0,
   },
   prospectLogo: {
+    marginBottom: 10,
     width: 100,
     height: 50,
     resizeMode: 'contain',
   },
-  prospectName: {
+  opportunityStatus: {
+    margin: 10,
     fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'left',
-//    flexWrap: 'wrap',
+  },
+  prospectName: {
+    fontSize: 16,
+    margin: 5,
+    marginBottom: 0,
   },
   opportunityName: {
     textAlign: 'left',
   },
   region: {
-    textAlign: 'left',
+    fontSize: 16,
   },
   listView: {
-    paddingTop: 20,
+    //    paddingTop: 20,
     backgroundColor: '#FFFFFF',
   },
 });
