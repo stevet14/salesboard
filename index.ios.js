@@ -10,6 +10,7 @@ import {
   Image,
   ListView,
   NavigatorIOS,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -50,7 +51,7 @@ var MOCKED_SALES_DATA = [
 
 const customTextProps = {
   style: {
-    fontFamily: 'System',
+    fontFamily: 'HelveticaNeue',
     fontWeight: '600',
     color: '#404040',
   }
@@ -63,15 +64,20 @@ export default class salesboard extends Component {
     this.refs.nav.push({
       component: Opportunity,
       title: 'Opportunity',
-//      passProps: { myProp: 'genius' },
+      //      passProps: { myProp: 'genius' },
     });
   }
   render() {
     return (
       <NavigatorIOS
+        barTintColor='#2A265C'
+        titleTextColor='#fff'
+        tintColor='#007AFF'
         initialRoute={{
+          translucent: false,
           component: Opportunities,
           title: 'Opportunities',
+          titleImage: require('./ios/assets/Alfa logo.png'),
           rightButtonTitle: 'Add',
           onRightButtonPress: () => this._handleNavigationRequest(),
         }}
@@ -125,6 +131,7 @@ class Opportunities extends Component {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderOpportunity}
+        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         style={styles.listView}
       />
     );
@@ -143,18 +150,19 @@ class Opportunities extends Component {
   renderOpportunity(opportunity) {
     return (
       <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <Image
-            source={{uri: opportunity.prospectLogo}}
-            style={styles.prospectLogo}
-          />
-          <Text style={styles.opportunityStatus}>Initial Contact</Text>
-        </View>
-        <Text style={styles.prospectName}>{opportunity.prospectName}</Text>
-        <View style={styles.bottomContainer}>
-          <Text style={styles.region}>{opportunity.region}</Text>
-          <Text> : </Text>
-          <Text style={styles.opportunityName}>{opportunity.opportunityName}</Text>
+        <StatusBar
+          barStyle="light-content"
+        />
+        <Image
+          source={{uri: opportunity.prospectLogo}}
+          style={styles.prospectLogo}
+        />
+        <View style={styles.rightContainer}>
+          <Text style={styles.prospectName}>{opportunity.prospectName}</Text>
+          <View style={styles.bottomContainer}>
+            <Text style={styles.region}>{opportunity.region}: </Text>
+            <Text style={styles.opportunityName}>{opportunity.opportunityName}</Text>
+          </View>
         </View>
       </View>
     );
@@ -176,26 +184,26 @@ class Opportunity extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     backgroundColor: '#FFFFFF',
     margin: 10,
     marginBottom: 0,
-    shadowColor: '#888',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowRadius: 2,
-    shadowOpacity: 1.0,
+//    shadowColor: '#888',
+//    shadowOffset: {
+//      width: 0,
+//      height: 2
+//    },
+//    shadowRadius: 2,
+//    shadowOpacity: 1.0,
   },
-  topContainer: {
+  rightContainer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
-    margin: 5,
+    alignItems: 'flex-start',
+    margin: 12,
     marginBottom: 0,
   },
   bottomContainer: {
@@ -203,33 +211,39 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'baseline',
-    margin: 5,
     marginBottom: 0,
   },
   prospectLogo: {
     marginBottom: 10,
-    width: 100,
-    height: 50,
+    width: 69,
+    height: 69,
     resizeMode: 'contain',
   },
-  opportunityStatus: {
-    margin: 10,
-    fontSize: 20,
-  },
   prospectName: {
-    fontSize: 16,
-    margin: 5,
+    color: '#D8D8D8',
+    fontSize: 27,
     marginBottom: 0,
   },
   opportunityName: {
+    color: '#D8D8D8',
     textAlign: 'left',
+    fontSize: 15,
   },
   region: {
-    fontSize: 16,
+    color: '#D8D8D8',
+    fontSize: 15,
   },
   listView: {
     //    paddingTop: 20,
     backgroundColor: '#FFFFFF',
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    width: '80%',
+    backgroundColor: '#979797',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
