@@ -215,7 +215,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     margin: '5%',
-    marginBottom: -10,
+    marginBottom: -5,
     // shadowColor: '#888',
     // shadowOffset: {
     //   width: 0,
@@ -269,7 +269,7 @@ var styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth*2,
     width: '90%',
     margin: '5%',
-    marginBottom: -10,
+    marginBottom: -5,
     backgroundColor: '#9B9B9B',
   },
 });
