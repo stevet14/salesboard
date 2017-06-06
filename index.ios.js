@@ -17,33 +17,34 @@ import {
 } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
+var Accordion = require('react-native-accordion');
 //var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
 var MOCKED_SALES_DATA = [
   {opportunities: [
     {prospectName: 'John Deere Financial',
     prospectLogo: 'https://mfa-inc.com/portals/0/CreditFinance/image/JDFinancial.png',
-    opportunityName: 'Point of Sale - UK, Germany, Spain',
+    opportunityName: 'Point of Sale',
     region: 'Europe'},
     {prospectName: 'GM Financial',
     prospectLogo: 'https://www.fourgonsrivesud.com/wp-content/uploads/2016/04/gm.png',
-    opportunityName: 'End-to-end - Ireland',
+    opportunityName: 'End-to-end',
     region: 'Europe'},
     {prospectName: 'CarMax',
     prospectLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAARBAAAAJGVmMTRjNzUxLTMxY2EtNDQ1MS05NzNmLWJkZTIzYTZlMTNhMQ.png',
-    opportunityName: 'Back-end - USA',
+    opportunityName: 'Back-end',
     region: 'North America'},
     {prospectName: 'Royal Bank of Canada',
     prospectLogo: 'https://lh3.googleusercontent.com/_Xe3RDC0TntZEhmlvmeAR4cXRVjHJX_axkIKMT0fhVGbjcqdPlQtZFpVDIoU_SjlvHY=w170',
-    opportunityName: 'Back-end - Canada',
+    opportunityName: 'Back-end',
     region: 'North America'},
     {prospectName: 'Dell Financial Services',
     prospectLogo: 'https://centretechnologies.com/wp-content/uploads/2013/12/p-dell.png',
-    opportunityName: 'Back-end - USA',
+    opportunityName: 'Back-end',
     region: 'North America'},
     {prospectName: 'Nissan Financial Services',
     prospectLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/200px-Nissan-logo.svg.png',
-    opportunityName: 'Back-end - USA',
+    opportunityName: 'Back-end',
     region: 'North America'},
   ]
 }
@@ -51,7 +52,8 @@ var MOCKED_SALES_DATA = [
 
 const customTextProps = {
   style: {
-    fontFamily: 'HelveticaNeue',
+//    fontFamily: 'Futura-CondensedMedium',
+    fontFamily: 'Roboto-Light',
     fontWeight: '600',
     color: '#404040',
   }
@@ -148,7 +150,7 @@ class Opportunities extends Component {
   }
 
   renderOpportunity(opportunity) {
-    return (
+    var header = (
       <View style={styles.container}>
         <StatusBar
           barStyle="light-content"
@@ -165,6 +167,30 @@ class Opportunities extends Component {
           </View>
         </View>
       </View>
+    );
+
+    var content = (
+      <View>
+        <Text style={styles.opportunityDetail}>
+Notes: 6 weeks to decline strategy……..
+iste natus error sit voluptatem accusantium
+doloremque laudantium, totam rem aperiam,
+eaque ipsa quae ab illo inventore veritatis et
+quasi architecto beatae vitae dicta sunt explicabo.
+Nemo enim ipsam voluptatem quia voluptas sit
+aspernatur aut odit aut fugit, sed quia consequuntur
+magni dolores eos qui ratione voluptatem sequi .
+        </Text>
+      </View>
+    );
+
+    return (
+      <Accordion
+        header={header}
+        content={content}
+        easing="easeOutCubic"
+        underlayColor="#FFFFFF"
+      />
     );
   }
 }
@@ -186,64 +212,65 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    margin: 10,
-    marginBottom: 0,
-//    shadowColor: '#888',
-//    shadowOffset: {
-//      width: 0,
-//      height: 2
-//    },
-//    shadowRadius: 2,
-//    shadowOpacity: 1.0,
+    margin: '5%',
+    marginBottom: -10,
+    // shadowColor: '#888',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2
+    // },
+    // shadowRadius: 2,
+    // shadowOpacity: 1.0,
   },
   rightContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    margin: 12,
-    marginBottom: 0,
+    margin: 10,
   },
   bottomContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'baseline',
-    marginBottom: 0,
   },
   prospectLogo: {
-    marginBottom: 10,
     width: 69,
     height: 69,
     resizeMode: 'contain',
   },
   prospectName: {
-    color: '#D8D8D8',
-    fontSize: 27,
-    marginBottom: 0,
+    color: '#9B9B9B',
+    fontSize: 24,
   },
   opportunityName: {
-    color: '#D8D8D8',
+    color: '#9B9B9B',
     textAlign: 'left',
-    fontSize: 15,
+    fontSize: 16,
   },
   region: {
-    color: '#D8D8D8',
-    fontSize: 15,
+    color: '#9B9B9B',
+    fontSize: 16,
+  },
+  opportunityDetail: {
+    color: '#9B9B9B',
+    fontSize: 16,
+    margin: '5%',
+    marginBottom: 0,
   },
   listView: {
-    //    paddingTop: 20,
     backgroundColor: '#FFFFFF',
   },
   separator: {
     flex: 1,
-    height: StyleSheet.hairlineWidth,
-    width: '80%',
-    backgroundColor: '#979797',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: StyleSheet.hairlineWidth*2,
+    width: '90%',
+    margin: '5%',
+    marginBottom: -10,
+    backgroundColor: '#9B9B9B',
   },
 });
 
