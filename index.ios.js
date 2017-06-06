@@ -281,7 +281,8 @@ class Opportunities extends Component {
       height: StyleSheet.hairlineWidth*2,
       width: '90%',
       margin: '5%',
-      marginBottom: -5,
+//      marginBottom: -5,
+      marginBottom: 1,
       backgroundColor: '#9B9B9B',
     },
     gauge: {
