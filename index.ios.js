@@ -16,6 +16,7 @@ import {
   View,
 } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
+import Pie from 'react-native-pie';
 
 var Accordion = require('react-native-accordion');
 //var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
@@ -52,7 +53,7 @@ var MOCKED_SALES_DATA = [
 
 const customTextProps = {
   style: {
-//    fontFamily: 'Futura-CondensedMedium',
+    //    fontFamily: 'Futura-CondensedMedium',
     fontFamily: 'Roboto-Light',
     fontWeight: '600',
     color: '#404040',
@@ -166,112 +167,135 @@ class Opportunities extends Component {
             <Text style={styles.opportunityName}>{opportunity.opportunityName}</Text>
           </View>
         </View>
-      </View>
-    );
+        <View>
+          <Pie
+            radius={25}
+            innerRadius={20}
+            series={[60]}
+            colors={['#7ED321']}
+            backgroundColor='#ddd' />
+            <View style={styles.gauge}>
+              <Text style={styles.gaugeText}>60%</Text>
+            </View>
+          </View>
+        </View>
+      );
 
-    var content = (
-      <View>
-        <Text style={styles.opportunityDetail}>
-Notes: 6 weeks to decline strategy……..
-iste natus error sit voluptatem accusantium
-doloremque laudantium, totam rem aperiam,
-eaque ipsa quae ab illo inventore veritatis et
-quasi architecto beatae vitae dicta sunt explicabo.
-Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur
-magni dolores eos qui ratione voluptatem sequi .
-        </Text>
-      </View>
-    );
+      var content = (
+        <View>
+          <Text style={styles.opportunityDetail}>
+            Notes: 6 weeks to decline strategy……..
+            iste natus error sit voluptatem accusantium
+            doloremque laudantium, totam rem aperiam,
+            eaque ipsa quae ab illo inventore veritatis et
+            quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit
+            aspernatur aut odit aut fugit, sed quia consequuntur
+            magni dolores eos qui ratione voluptatem sequi .
+          </Text>
+        </View>
+      );
 
-    return (
-      <Accordion
-        header={header}
-        content={content}
-        easing="easeOutCubic"
-        underlayColor="#FFFFFF"
-      />
-    );
+      return (
+        <Accordion
+          header={header}
+          content={content}
+          easing="easeOutCubic"
+          underlayColor="#FFFFFF"
+        />
+      );
+    }
   }
-}
 
-class Opportunity extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Add opportunity...
-        </Text>
-      </View>
-    );
+  class Opportunity extends Component {
+    render() {
+      return (
+        <View style={styles.container}>
+          <Text>
+            Add opportunity...
+          </Text>
+        </View>
+      );
+    }
   }
-}
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    margin: '5%',
-    marginBottom: -5,
-    // shadowColor: '#888',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2
-    // },
-    // shadowRadius: 2,
-    // shadowOpacity: 1.0,
-  },
-  rightContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    margin: 10,
-  },
-  bottomContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'baseline',
-  },
-  prospectLogo: {
-    width: 69,
-    height: 69,
-    resizeMode: 'contain',
-  },
-  prospectName: {
-    color: '#9B9B9B',
-    fontSize: 24,
-  },
-  opportunityName: {
-    color: '#9B9B9B',
-    textAlign: 'left',
-    fontSize: 16,
-  },
-  region: {
-    color: '#9B9B9B',
-    fontSize: 16,
-  },
-  opportunityDetail: {
-    color: '#9B9B9B',
-    fontSize: 16,
-    margin: '5%',
-    marginBottom: 0,
-  },
-  listView: {
-    backgroundColor: '#FFFFFF',
-  },
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth*2,
-    width: '90%',
-    margin: '5%',
-    marginBottom: -5,
-    backgroundColor: '#9B9B9B',
-  },
-});
+  var styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      backgroundColor: '#FFFFFF',
+      margin: '5%',
+      marginBottom: -5,
+      // shadowColor: '#888',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 2
+      // },
+      // shadowRadius: 2,
+      // shadowOpacity: 1.0,
+    },
+    rightContainer: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      margin: 10,
+    },
+    bottomContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'baseline',
+    },
+    prospectLogo: {
+      width: 69,
+      height: 69,
+      resizeMode: 'contain',
+    },
+    prospectName: {
+      color: '#9B9B9B',
+      fontSize: 24,
+    },
+    opportunityName: {
+      color: '#9B9B9B',
+      textAlign: 'left',
+      fontSize: 16,
+    },
+    region: {
+      color: '#9B9B9B',
+      fontSize: 16,
+    },
+    opportunityDetail: {
+      color: '#9B9B9B',
+      fontSize: 16,
+      margin: '5%',
+      marginBottom: 0,
+    },
+    listView: {
+      backgroundColor: '#FFFFFF',
+    },
+    separator: {
+      flex: 1,
+      height: StyleSheet.hairlineWidth*2,
+      width: '90%',
+      margin: '5%',
+      marginBottom: -5,
+      backgroundColor: '#9B9B9B',
+    },
+    gauge: {
+      position: 'absolute',
+      width: 53,
+      height: 48,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    gaugeText: {
+      backgroundColor: 'transparent',
+      color: '#9B9B9B',
+      fontSize: 16,
+    },
+  });
 
-AppRegistry.registerComponent('salesboard', () => salesboard);
+  AppRegistry.registerComponent('salesboard', () => salesboard);
