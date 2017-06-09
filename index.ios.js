@@ -27,32 +27,38 @@ var MOCKED_SALES_DATA = [
     prospectLogo: 'https://mfa-inc.com/portals/0/CreditFinance/image/JDFinancial.png',
     opportunityName: 'Point of Sale',
     region: 'Europe',
-    probability: 80},
+    probability: 80,
+    status: 'Subject to Contract'},
     {prospectName: 'GM Financial',
     prospectLogo: 'https://www.fourgonsrivesud.com/wp-content/uploads/2016/04/gm.png',
     opportunityName: 'End-to-end',
     region: 'Europe',
-    probability: 95},
+    probability: 95,
+    status: 'Subject to Contract'},
     {prospectName: 'CarMax',
     prospectLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAARBAAAAJGVmMTRjNzUxLTMxY2EtNDQ1MS05NzNmLWJkZTIzYTZlMTNhMQ.png',
     opportunityName: 'Back-end',
     region: 'North America',
-    probability: 20},
+    probability: 20,
+    status: 'Subject to Contract'},
     {prospectName: 'Royal Bank of Canada',
     prospectLogo: 'https://lh3.googleusercontent.com/_Xe3RDC0TntZEhmlvmeAR4cXRVjHJX_axkIKMT0fhVGbjcqdPlQtZFpVDIoU_SjlvHY=w170',
     opportunityName: 'Back-end',
     region: 'North America',
-    probability: 25},
+    probability: 25,
+    status: 'Workshops'},
     {prospectName: 'Dell Financial Services',
     prospectLogo: 'https://centretechnologies.com/wp-content/uploads/2013/12/p-dell.png',
     opportunityName: 'Back-end',
     region: 'North America',
-    probability: 10},
+    probability: 10,
+    status: 'RFP'},
     {prospectName: 'Nissan Financial Services',
     prospectLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/200px-Nissan-logo.svg.png',
     opportunityName: 'Back-end',
     region: 'North America',
-    probability: 30},
+    probability: 30,
+    status: 'Initial Contact'},
   ]
 }
 ];
@@ -198,7 +204,11 @@ class Opportunities extends Component {
 
       var content = (
         <View>
-          <Text style={styles.opportunityDetail}>
+          <View style={styles.statusLine}>
+            <Text style={styles.opportunityStatusLabel}>Status: </Text>
+            <Text style={styles.opportunityStatus}>{opportunity.status}</Text>
+          </View>
+        <Text style={styles.opportunityDetail}>
             Notes: 6 weeks to decline strategy……..
             iste natus error sit voluptatem accusantium
             doloremque laudantium, totam rem aperiam,
@@ -287,6 +297,22 @@ class Opportunities extends Component {
       fontSize: 16,
       margin: '5%',
       marginBottom: 0,
+    },
+    statusLine: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      margin: '5%',
+      marginBottom: 0,
+    },
+    opportunityStatusLabel: {
+      color: '#9B9B9B',
+      fontSize: 18,
+    },
+    opportunityStatus: {
+      color: '#7ED321',
+      fontSize: 18,
     },
     listView: {
       backgroundColor: '#FFFFFF',
