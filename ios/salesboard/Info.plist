@@ -6,6 +6,7 @@
 	<array>
 		<string>Roboto-Light.ttf</string>
 		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-Bold.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

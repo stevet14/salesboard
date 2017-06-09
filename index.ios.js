@@ -28,38 +28,80 @@ var MOCKED_SALES_DATA = [
     opportunityName: 'Point of Sale',
     region: 'Europe',
     probability: 80,
-    status: 'Subject to Contract'},
-    {prospectName: 'GM Financial',
-    prospectLogo: 'https://www.fourgonsrivesud.com/wp-content/uploads/2016/04/gm.png',
-    opportunityName: 'End-to-end',
-    region: 'Europe',
-    probability: 95,
-    status: 'Subject to Contract'},
-    {prospectName: 'CarMax',
-    prospectLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAARBAAAAJGVmMTRjNzUxLTMxY2EtNDQ1MS05NzNmLWJkZTIzYTZlMTNhMQ.png',
-    opportunityName: 'Back-end',
-    region: 'North America',
-    probability: 20,
-    status: 'Subject to Contract'},
-    {prospectName: 'Royal Bank of Canada',
-    prospectLogo: 'https://lh3.googleusercontent.com/_Xe3RDC0TntZEhmlvmeAR4cXRVjHJX_axkIKMT0fhVGbjcqdPlQtZFpVDIoU_SjlvHY=w170',
-    opportunityName: 'Back-end',
-    region: 'North America',
-    probability: 25,
-    status: 'Workshops'},
-    {prospectName: 'Dell Financial Services',
-    prospectLogo: 'https://centretechnologies.com/wp-content/uploads/2013/12/p-dell.png',
-    opportunityName: 'Back-end',
-    region: 'North America',
-    probability: 10,
-    status: 'RFP'},
-    {prospectName: 'Nissan Financial Services',
-    prospectLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/200px-Nissan-logo.svg.png',
-    opportunityName: 'Back-end',
-    region: 'North America',
-    probability: 30,
-    status: 'Initial Contact'},
-  ]
+    status: 'Subject to Contract',
+    pricingStatus: 'Pre-negotiated',
+    currency: 'USD',
+    licence: 10000000,
+    maintenance: 2000000,
+    days: 20000,
+    dayRate: 2040,
+  },
+  {prospectName: 'GM Financial',
+  prospectLogo: 'https://www.fourgonsrivesud.com/wp-content/uploads/2016/04/gm.png',
+  opportunityName: 'End-to-end',
+  region: 'Europe',
+  probability: 95,
+  status: 'Subject to Contract',
+  pricingStatus: 'Pre-negotiated',
+  currency: 'USD',
+  licence: 10000000,
+  maintenance: 2000000,
+  days: 20000,
+  dayRate: 2040,
+},
+{prospectName: 'CarMax',
+prospectLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAARBAAAAJGVmMTRjNzUxLTMxY2EtNDQ1MS05NzNmLWJkZTIzYTZlMTNhMQ.png',
+opportunityName: 'Back-end',
+region: 'North America',
+probability: 20,
+status: 'Subject to Contract',
+pricingStatus: 'Pre-negotiated',
+currency: 'USD',
+licence: 10000000,
+maintenance: 2000000,
+days: 20000,
+dayRate: 2040,
+},
+{prospectName: 'Royal Bank of Canada',
+prospectLogo: 'https://lh3.googleusercontent.com/_Xe3RDC0TntZEhmlvmeAR4cXRVjHJX_axkIKMT0fhVGbjcqdPlQtZFpVDIoU_SjlvHY=w170',
+opportunityName: 'Back-end',
+region: 'North America',
+probability: 25,
+status: 'Workshops',
+pricingStatus: 'Pre-negotiated',
+currency: 'USD',
+licence: 10000000,
+maintenance: 2000000,
+days: 20000,
+dayRate: 2040,
+},
+{prospectName: 'Dell Financial Services',
+prospectLogo: 'https://centretechnologies.com/wp-content/uploads/2013/12/p-dell.png',
+opportunityName: 'Back-end',
+region: 'North America',
+probability: 10,
+status: 'RFP',
+pricingStatus: 'Pre-negotiated',
+currency: 'USD',
+licence: 10000000,
+maintenance: 2000000,
+days: 20000,
+dayRate: 2040,
+},
+{prospectName: 'Nissan Financial Services',
+prospectLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/200px-Nissan-logo.svg.png',
+opportunityName: 'Back-end',
+region: 'North America',
+probability: 30,
+status: 'Initial Contact',
+pricingStatus: 'Pre-negotiated',
+currency: 'USD',
+licence: 10000000,
+maintenance: 2000000,
+days: 20000,
+dayRate: 2040,
+},
+]
 }
 ];
 
@@ -67,8 +109,8 @@ const customTextProps = {
   style: {
     //    fontFamily: 'Futura-CondensedMedium',
     fontFamily: 'Roboto-Light',
-    fontWeight: '600',
-    color: '#404040',
+//    fontWeight: '600',
+    color: '#9B9B9B',
   }
 }
 
@@ -167,9 +209,9 @@ class Opportunities extends Component {
     if (opportunity.probability < 25) {
       gaugeColour = '#A21122';
     } else if (opportunity.probability > 75) {
-        gaugeColour = '#7ED321';
+      gaugeColour = '#7ED321';
     } else {
-        gaugeColour = '#F6A623';
+      gaugeColour = '#F6A623';
     }
 
     var header = (
@@ -208,7 +250,19 @@ class Opportunities extends Component {
             <Text style={styles.opportunityStatusLabel}>Status: </Text>
             <Text style={styles.opportunityStatus}>{opportunity.status}</Text>
           </View>
-        <Text style={styles.opportunityDetail}>
+          <View style={{flex: 1, flexDirection: 'row', margin: '5%', marginBottom: 0}}>
+            <View style={{flex: 1, flexDirection: 'column'}}>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Licence: {opportunity.licence}</Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Maintenance: {opportunity.maintenance}</Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Currency: {opportunity.currency}</Text>
+            </View>
+            <View style={{flex: 1, flexDirection: 'column'}}>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Days: {opportunity.days}</Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Rate: {opportunity.dayRate}</Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Pricing: {opportunity.pricingStatus}</Text>
+            </View>
+          </View>
+          <Text style={styles.opportunityDetail}>
             Notes: 6 weeks to decline strategy……..
             iste natus error sit voluptatem accusantium
             doloremque laudantium, totam rem aperiam,
@@ -280,20 +334,19 @@ class Opportunities extends Component {
       resizeMode: 'contain',
     },
     prospectName: {
-      color: '#9B9B9B',
+      fontFamily: 'Roboto-Regular',
       fontSize: 24,
     },
     opportunityName: {
-      color: '#9B9B9B',
+      fontFamily: 'Roboto-Regular',
       textAlign: 'left',
       fontSize: 16,
     },
     region: {
-      color: '#9B9B9B',
+      fontFamily: 'Roboto-Regular',
       fontSize: 16,
     },
     opportunityDetail: {
-      color: '#9B9B9B',
       fontSize: 16,
       margin: '5%',
       marginBottom: 0,
@@ -307,7 +360,7 @@ class Opportunities extends Component {
       marginBottom: 0,
     },
     opportunityStatusLabel: {
-      color: '#9B9B9B',
+      fontFamily: 'Roboto-Regular',
       fontSize: 18,
     },
     opportunityStatus: {
@@ -322,7 +375,7 @@ class Opportunities extends Component {
       height: StyleSheet.hairlineWidth*2,
       width: '90%',
       margin: '5%',
-//      marginBottom: -5,
+      //      marginBottom: -5,
       marginBottom: 1,
       backgroundColor: '#9B9B9B',
     },
@@ -334,7 +387,6 @@ class Opportunities extends Component {
       justifyContent: 'center',
     },
     gaugeText: {
-      color: '#9B9B9B',
       backgroundColor: 'transparent',
       fontSize: 16,
     },
