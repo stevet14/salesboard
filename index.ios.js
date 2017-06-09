@@ -26,27 +26,33 @@ var MOCKED_SALES_DATA = [
     {prospectName: 'John Deere Financial',
     prospectLogo: 'https://mfa-inc.com/portals/0/CreditFinance/image/JDFinancial.png',
     opportunityName: 'Point of Sale',
-    region: 'Europe'},
+    region: 'Europe',
+    probability: 80},
     {prospectName: 'GM Financial',
     prospectLogo: 'https://www.fourgonsrivesud.com/wp-content/uploads/2016/04/gm.png',
     opportunityName: 'End-to-end',
-    region: 'Europe'},
+    region: 'Europe',
+    probability: 95},
     {prospectName: 'CarMax',
     prospectLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAARBAAAAJGVmMTRjNzUxLTMxY2EtNDQ1MS05NzNmLWJkZTIzYTZlMTNhMQ.png',
     opportunityName: 'Back-end',
-    region: 'North America'},
+    region: 'North America',
+    probability: 20},
     {prospectName: 'Royal Bank of Canada',
     prospectLogo: 'https://lh3.googleusercontent.com/_Xe3RDC0TntZEhmlvmeAR4cXRVjHJX_axkIKMT0fhVGbjcqdPlQtZFpVDIoU_SjlvHY=w170',
     opportunityName: 'Back-end',
-    region: 'North America'},
+    region: 'North America',
+    probability: 25},
     {prospectName: 'Dell Financial Services',
     prospectLogo: 'https://centretechnologies.com/wp-content/uploads/2013/12/p-dell.png',
     opportunityName: 'Back-end',
-    region: 'North America'},
+    region: 'North America',
+    probability: 10},
     {prospectName: 'Nissan Financial Services',
     prospectLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/200px-Nissan-logo.svg.png',
     opportunityName: 'Back-end',
-    region: 'North America'},
+    region: 'North America',
+    probability: 30},
   ]
 }
 ];
@@ -151,6 +157,15 @@ class Opportunities extends Component {
   }
 
   renderOpportunity(opportunity) {
+    var gaugeColour;
+    if (opportunity.probability < 25) {
+      gaugeColour = '#A21122';
+    } else if (opportunity.probability > 75) {
+        gaugeColour = '#7ED321';
+    } else {
+        gaugeColour = '#F6A623';
+    }
+
     var header = (
       <View style={styles.container}>
         <StatusBar
@@ -171,11 +186,11 @@ class Opportunities extends Component {
           <Pie
             radius={25}
             innerRadius={20}
-            series={[60]}
-            colors={['#7ED321']}
+            series={[opportunity.probability]}
+            colors={[gaugeColour]}
             backgroundColor='#ddd' />
             <View style={styles.gauge}>
-              <Text style={styles.gaugeText}>60%</Text>
+              <Text style={styles.gaugeText}>{opportunity.probability}%</Text>
             </View>
           </View>
         </View>
@@ -294,7 +309,6 @@ class Opportunities extends Component {
     },
     gaugeText: {
       backgroundColor: 'transparent',
-      color: '#9B9B9B',
       fontSize: 16,
     },
   });
