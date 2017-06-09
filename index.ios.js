@@ -334,6 +334,7 @@ class Opportunities extends Component {
       justifyContent: 'center',
     },
     gaugeText: {
+      color: '#9B9B9B',
       backgroundColor: 'transparent',
       fontSize: 16,
     },
