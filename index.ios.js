@@ -17,6 +17,11 @@ import {
 } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 import Pie from 'react-native-pie';
+import {
+  FormattedWrapper,
+  FormattedCurrency,
+  FormattedNumber
+} from 'react-native-globalize';
 
 var Accordion = require('react-native-accordion');
 //var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
@@ -126,6 +131,7 @@ export default class salesboard extends Component {
   }
   render() {
     return (
+      <FormattedWrapper locale="en" currency="USD">
       <NavigatorIOS
         barTintColor='#2A265C'
         titleTextColor='#fff'
@@ -140,6 +146,7 @@ export default class salesboard extends Component {
         }}
         style={{flex: 1}}
       />
+    </FormattedWrapper>
     );
   }
 }
@@ -252,13 +259,31 @@ class Opportunities extends Component {
           </View>
           <View style={{flex: 1, flexDirection: 'row', margin: '5%', marginBottom: 0}}>
             <View style={{flex: 1, flexDirection: 'column'}}>
-              <Text style={{fontFamily: 'Roboto-Regular'}}>Licence: {opportunity.licence}</Text>
-              <Text style={{fontFamily: 'Roboto-Regular'}}>Maintenance: {opportunity.maintenance}</Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Licence:
+                <FormattedCurrency
+                  value={opportunity.licence}
+                  maximumFractionDigits='0'
+                  currency={opportunity.currency} />
+              </Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Maintenance:
+                <FormattedCurrency
+                  value={opportunity.maintenance}
+                  maximumFractionDigits='0'
+                  currency={opportunity.currency} />
+              </Text>
               <Text style={{fontFamily: 'Roboto-Regular'}}>Currency: {opportunity.currency}</Text>
             </View>
             <View style={{flex: 1, flexDirection: 'column'}}>
-              <Text style={{fontFamily: 'Roboto-Regular'}}>Days: {opportunity.days}</Text>
-              <Text style={{fontFamily: 'Roboto-Regular'}}>Rate: {opportunity.dayRate}</Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Days:
+                <FormattedNumber
+                  value={opportunity.days}
+                  maximumFractionDigits={0} />
+                </Text>
+              <Text style={{fontFamily: 'Roboto-Regular'}}>Rate:
+                <FormattedNumber
+                  value={opportunity.dayRate}
+                  maximumFractionDigits={0} />
+              </Text>
               <Text style={{fontFamily: 'Roboto-Regular'}}>Pricing: {opportunity.pricingStatus}</Text>
             </View>
           </View>
