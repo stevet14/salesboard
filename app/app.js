@@ -30,26 +30,26 @@ const tabs = [{
 Navigation.startTabBasedApp({
     tabs,
     tabsStyle: {
-        tabBarBackgroundColor: '#003a66',
+        tabBarBackgroundColor: '#2A265C',
         navBarButtonColor: '#ffffff',
         tabBarButtonColor: '#ffffff',
         navBarTextColor: '#ffffff',
-        tabBarSelectedButtonColor: '#ff505c',
-        navigationBarColor: '#003a66',
-        navBarBackgroundColor: '#003a66',
-        statusBarColor: '#002b4c',
-        tabFontFamily: 'BioRhyme-Bold',
+        tabBarSelectedButtonColor: '#ffffff',
+        navigationBarColor: '#2A265C',
+        navBarBackgroundColor: '#2A265C',
+        statusBarColor: '#2A265C',
+        tabFontFamily: 'Roboto-Light'
     },
     appStyle: {
-        tabBarBackgroundColor: '#003a66',
+        tabBarBackgroundColor: '#2A265C',
         navBarButtonColor: '#ffffff',
         tabBarButtonColor: '#ffffff',
         navBarTextColor: '#ffffff',
-        tabBarSelectedButtonColor: '#ff505c',
-        navigationBarColor: '#003a66',
-        navBarBackgroundColor: '#003a66',
-        statusBarColor: '#002b4c',
-        tabFontFamily: 'BioRhyme-Bold',
+        tabBarSelectedButtonColor: '#ffffff',
+        navigationBarColor: '#2A265C',
+        navBarBackgroundColor: '#2A265C',
+        statusBarColor: '#2A265C',
+        tabFontFamily: 'Roboto-Light'
     }
     //,
     // Uncomment this to add a draw that can be dragged from the side for
